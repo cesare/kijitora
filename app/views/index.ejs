@@ -14,13 +14,19 @@ $(function() {
     var user = data.user;
     
     var profileImage = $("<img>").attr({src: user.profile_image_url, alt: user.screen_name});
-    var icon = $("<div>").addClass("profile-image").append(profileImage);
+    var imageLink = generateUserLink(user).attr({ target: "_blank" }).append(profileImage);
+    var icon = $("<div>").addClass("profile-image").append(imageLink);
     
-    var screenName = $("<div>").addClass("screen-name").text(user.screen_name);
+    var nameLink = generateUserLink(user).attr({ target: "_blank" }).text(user.screen_name);
+    var screenName = $("<div>").addClass("screen-name").append(nameLink);
     var tweet = $("<div>").addClass("tweet").text(data.text);
     var message = $("<div>").addClass("message").append(screenName).append(tweet);
     
     $("<div>").addClass("entry").append(icon).append(message).prependTo("#streams");
+  }
+  
+  function generateUserLink(user) {
+    return $("<a>").attr({ href: "http://twitter.com/#!/" + user.screen_name });
   }
 });
 </script>
