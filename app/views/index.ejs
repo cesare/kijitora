@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Kijitora</title>
-<script type="text/javascript" src="/javascripts/jquery.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-</head>
-<body>
 <div id="streams">
 </div>
-</body>
 <script type="text/javascript">
 $(function() {
   var socket = io.connect('http://localhost:8080');
@@ -21,8 +11,16 @@ $(function() {
   });
   
   function displayTweet(data) {
-    $("<div>").addClass("entry").text(data.text).prependTo("#streams");
+    var user = data.user;
+    
+    var profileImage = $("<img>").attr({src: user.profile_image_url, alt: user.screen_name});
+    var icon = $("<div>").addClass("profile-image").append(profileImage);
+    
+    var screenName = $("<div>").addClass("screen-name").text(user.screen_name);
+    var tweet = $("<div>").addClass("tweet").text(data.text);
+    var message = $("<div>").addClass("message").append(screenName).append(tweet);
+    
+    $("<div>").addClass("entry").append(icon).append(message).prependTo("#streams");
   }
 });
 </script>
-</html>

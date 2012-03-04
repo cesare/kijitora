@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Kijitora</title>
+<link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+<link rel="stylesheet" href="/stylesheets/bootstrap-responsive.css" />
+<style type="text/css">
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.entry {
+  clear: left;
+  margin: 5px 0 20px 0;
+}
+
+.profile-image {
+  float: left;
+  padding: 5px;
+}
+
+.message {
+  float: left;
+  padding: 5px;
+  width: 90%;
+}
+
+.screen-name {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Georgia;
+}
+
+.tweet {
+  font-size: 14px;
+}
+</style>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Kijitora</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+<div id="container" class="container">
+<%- body %>
+</div>
+</body>
+</html>

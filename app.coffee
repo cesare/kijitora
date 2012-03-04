@@ -24,7 +24,7 @@ sessionStore = new express.session.MemoryStore()
 app.configure ->
   app.use(express.static(__dirname + '/public'))
   app.set('views', __dirname + '/app/views')
-  app.set('view options', { layout: false })
+  app.set('view options', { layout: true })
   app.set('view engine', 'ejs')
   app.use(express.bodyParser())
   app.use(express.cookieParser())
