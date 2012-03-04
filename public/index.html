@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Kijitora</title>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div id="streams">
+</div>
+</body>
+<script type="text/javascript">
+$(function() {
+  var socket = io.connect('http://localhost:8080');
+  socket.on('stream', function (data) {
+    console.log(data);
+    if (data.text) {
+      displayTweet(data);
+    };
+  });
+  
+  function displayTweet(data) {
+    $("<div>").addClass("entry").text(data.text).prependTo("#streams");
+  }
+});
+</script>
+</html>

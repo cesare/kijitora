@@ -2,4 +2,5 @@
 *.swp
 *.bak
 *.orig
+config/kijitora.coffee
 node_modules

@@ -8,7 +8,8 @@
   "dependencies": {
     "coffee-script": "~1.2",
     "express": "~2.5",
-    "socket.io": "~0.8"
+    "socket.io": "~0.8",
+    "twitter": "~0.1"
   },
   "devDependencies": {},
   "optionalDependencies": {},
