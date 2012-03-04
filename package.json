@@ -3,7 +3,7 @@
   "name": "kijitora",
   "version": "0.0.0",
   "repository": {
-    "url": ""
+    "url": "git://github.com/cesare/kijitora.git"
   },
   "dependencies": {
     "express": "~2.5",
