@@ -1,0 +1,17 @@
+{
+  "author": "SAWADA Tadashi <cesare@mayverse.jp>",
+  "name": "kijitora",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {
+    "express": "~2.5",
+    "socket.io": "~0.8"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "~0.6"
+  }
+}
