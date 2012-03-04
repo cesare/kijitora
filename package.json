@@ -7,6 +7,9 @@
   },
   "dependencies": {
     "coffee-script": "~1.2",
+    "connect": "~2.0",
+    "ejs": ">0",
+    "everyauth": "~0.2",
     "express": "~2.5",
     "socket.io": "~0.8",
     "twitter": "~0.1"
