@@ -19,14 +19,70 @@ $(function() {
     
     var nameLink = generateUserLink(user).attr({ target: "_blank" }).text(user.screen_name);
     var screenName = $("<div>").addClass("screen-name").append(nameLink);
-    var tweet = $("<div>").addClass("tweet").text(data.text);
+    var tweet = formatTweet(data).addClass("tweet");
     var message = $("<div>").addClass("message").append(screenName).append(tweet);
     
     $("<div>").addClass("entry").append(icon).append(message).prependTo("#streams");
   }
   
   function generateUserLink(user) {
-    return $("<a>").attr({ href: "http://twitter.com/#!/" + user.screen_name });
+    return $("<a>").attr({ href: "http://twitter.com/#!/" + encodeURIComponent(user.screen_name) });
+  }
+  
+  function linkHashtag(entity, text) {
+    return $("<a>").attr({ href: "http://twitter.com/#!/search/" + encodeURIComponent(text)}).text(text);
+  }
+  
+  function linkUrls(entity, text) {
+    return $("<a>").attr({ href: entity.expanded_url }).text(entity.display_url);
+  }
+  
+  function linkUserMention(entity, text) {
+    return $("<a>").attr({ href: "http://twitter.com/#!/" + encodeURIComponent(entity.screen_name) }).text(text);
+  }
+  
+  function listEntities(data) {
+    var results = [];
+    var entities = data.entities;
+    if (! entities) {
+      return results;
+    }
+    
+    $.each(entities.hashtags, function(index, entity) {
+      results.push({ entity: entity, handler: linkHashtag });
+    });
+    
+    $.each(entities.urls, function(index, entity) {
+      results.push({ entity: entity, handler: linkUrls });
+    });
+    
+    $.each(entities.user_mentions, function(index, entity) {
+      results.push({ entity: entity, handler: linkUserMention });
+    });
+    
+    return results.sort(function(l, r) { return l.entity.indices[0] - r.entity.indices[0] });
+  }
+  
+  function formatTweet(data) {
+    var entities = listEntities(data);
+    var original = data.text;
+    var div = $("<div>");
+    var current = 0;
+    $.each(entities, function(index, e) {
+      var entity = e.entity;
+      var start = entity.indices[0];
+      var next = entity.indices[1];
+      
+      var head = original.substring(current, start);
+      div.append(head);
+      
+      var link = e.handler(entity, original.substring(start, next)).attr({ target: "_blank" });
+      div.append(link);
+      
+      current = next;
+    });
+    div.append(original.substring(current));
+    return div;
   }
 });
 </script>
