@@ -6,6 +6,7 @@
     "url": "git://github.com/cesare/kijitora.git"
   },
   "dependencies": {
+    "coffee-script": "~1.2",
     "express": "~2.5",
     "socket.io": "~0.8"
   },
